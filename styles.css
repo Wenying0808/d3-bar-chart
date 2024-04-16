@@ -1,0 +1,11 @@
+body{
+    background-color: black;
+    margin:60px;
+    
+}
+
+.main{
+    background-color: rgb(117, 116, 116);
+    border-radius: 20px;
+    padding: 30px;
+}
