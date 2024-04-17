@@ -18,7 +18,7 @@ d3.csv("bog_bodies.csv").then(data => {
     data.forEach(d => {
         d.total = +d.total // convert value to number
     });
-    console.log(data);
+    console.log("bog muscles:",data);
 
     //sort the data by total
     data.sort((a,b) => d3.ascending(a.total, b.total))
