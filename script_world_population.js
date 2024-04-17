@@ -56,21 +56,54 @@ d3.json('world_population.json')
         .attr("class", "y-axis2")
         .call(yAxis)
 
-    //create tooltip
-    var tooltip = d3.select("#chart-")
-
+    // Create tooltip element
+    const tooltip = d3.select("#chart-world-population").append("div")
+    .attr("class", "tooltip")
+    .append('p')
+    .attr("class", "year")
+    .append('p')
+    .attr("class", "population")
+  
 
     //create bars
-    svg2.selectAll(".bar")
+    svg2.selectAll(".bar2")
         .data(data)
         .enter()
         .append('rect')
-        .attr("class", "bar")
+        .attr("class", "bar2")
         .attr("x", d => x(d.year))
         .attr("width", x.bandwidth())
         .attr("y", d => y(d.world_population))
         .attr("height", d => height2 - y(d.world_population))
         .style("fill", "pink")
 
+        //add hover effect
+        .on("mouseover", function(e, d){
+            //get xy values from bar for tooltip position
+            var xPos = parseFloat(d3.select(this).attr("x")) + x.bandwidth() / 2;
+            var yPos = parseFloat(d3.select(this).attr("y")) + height + height2 + 140;
+            
+
+            //update tooltips's position and value
+            d3.select('.tooltip')
+                    .style("display", "block")
+                    .style("left", xPos + 'px')
+                    .style("top", yPos + 'px')
+                    .html(`<p class="tooltip-text">Year: ${d.year}</p><p class="tooltip-text">Population: ${d.world_population}</p>`)
+                    //.select('.year').text(d.year)
+                    //.select('.population').text(d.world_population)
+
+            d3.select(this).style("fill", "brown");
+            d3.select(this).transition()
+                            .duration(200);
+            
+        })
+        .on("mouseout", function(e, d){
+            setTimeout(() => {
+                tooltip.style("display", "none");
+              }, 100); 
+            d3.select(this).style("fill", "pink");
+        })
+       
     })
 
