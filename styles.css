@@ -2,10 +2,17 @@
 body{
     background-color: black;
     margin:60px;
-    
+    font-family: sans-serif;
+    display:flex;
+    flex-direction: column;
+    gap:40px;
 }
 
-.main{
+h2{
+    color:beige;
+}
+
+.card{
     background-color: white;
     border-radius: 20px;
     padding: 30px;
