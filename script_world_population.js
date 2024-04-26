@@ -99,10 +99,11 @@ d3.json('world_population.json')
             
         })
         .on("mouseout", function(e, d){
-            setTimeout(() => {
-                tooltip.style("display", "none");
-              }, 100); 
-            d3.select(this).style("fill", "pink");
+
+           d3.select('.tooltip')
+                .style("display", "none")
+        
+            d3.select(this).style("fill", "pink"); //revert bar color
         })
        
     })
